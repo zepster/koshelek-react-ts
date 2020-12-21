@@ -1,9 +1,8 @@
 import React from 'react';
+import { RootApp } from './root-app';
 
 function App() {
-  return (
-    <h1>Koshelek</h1>
-  );
+  return <RootApp />;
 }
 
 export default App;
