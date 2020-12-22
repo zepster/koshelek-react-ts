@@ -1,4 +1,4 @@
-import { createApp } from './root-app';
+import { createApp } from './core/root-app';
 
 const RootApp = createApp({
   pages: [

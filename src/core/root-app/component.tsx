@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from 'react';
 import { Header } from './components';
 import { LazyComponent, RootAppProps } from './types';
-import { Menu } from '../components/menu';
+import { Menu } from '../../components/menu';
 
 export const RootApp = ({
   pages,
