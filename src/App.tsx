@@ -1,8 +1,22 @@
-import React from 'react';
-import { RootApp } from './root-app';
+import { createApp } from './root-app';
 
-function App() {
-  return <RootApp />;
-}
+const RootApp = createApp({
+  pages: [
+    {
+      name: 'Status',
+      getComponent: () => import(
+        /* webpackChunkName: "status-page" */
+        './pages/status'
+      ),
+    },
+    {
+      name: 'Symbols',
+      getComponent: () => import(
+        /* webpackChunkName: "symbols-page" */
+        './pages/symbols'
+      ),
+    },
+  ],
+});
 
-export default App;
+export default RootApp;
