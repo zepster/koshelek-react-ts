@@ -7,14 +7,14 @@ const RootApp = createApp({
       getComponent: () => import(
         /* webpackChunkName: "status-page" */
         './pages/status'
-      ),
+      ).then((module) => ({ default: module.StatusPage })),
     },
     {
       name: 'Symbols',
       getComponent: () => import(
         /* webpackChunkName: "symbols-page" */
         './pages/symbols'
-      ),
+      ).then((module) => ({ default: module.SymbolsPage })),
     },
   ],
 });
