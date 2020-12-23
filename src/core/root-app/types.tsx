@@ -1,21 +1,17 @@
 import React from 'react';
+import { Core } from '../core';
 
-export type LazyComponent = React.LazyExoticComponent<() => JSX.Element>;
+type CoreProps = {
+  core: Core
+};
+
+export type LazyComponent = React.LazyExoticComponent<(props: CoreProps) => JSX.Element>;
 
 export type PageConfig = {
   name: string,
-  getComponent: () => Promise<{ default: () => JSX.Element }>;
-};
-
-export type LazyPageConfig = {
-  name: string,
-  getComponent: LazyComponent,
+  getComponent: LazyComponent;
 };
 
 export type AppConfig = {
   pages: PageConfig[],
-};
-
-export type RootAppProps = {
-  pages: LazyPageConfig[],
 };

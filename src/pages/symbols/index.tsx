@@ -1,1 +1,3 @@
-export { SymbolsPage } from './component';
+import { SymbolsPage } from './component';
+
+export default SymbolsPage;

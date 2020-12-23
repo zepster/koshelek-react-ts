@@ -1,1 +1,3 @@
-export { StatusPage } from './component';
+import { StatusPage } from './component';
+
+export default StatusPage;

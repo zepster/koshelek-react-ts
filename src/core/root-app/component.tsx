@@ -1,11 +1,12 @@
 import React, { Suspense, useState } from 'react';
 import { Header } from './components';
-import { LazyComponent, RootAppProps } from './types';
+import { LazyComponent, AppConfig } from './types';
 import { Menu } from '../../components/menu';
+import { core } from '../core';
 
 export const RootApp = ({
   pages,
-}: RootAppProps) => {
+}: AppConfig) => {
   const [
     CurrentComponent,
     setCurrentComponent,
@@ -26,7 +27,7 @@ export const RootApp = ({
         </Menu>
       </Header>
       <Suspense fallback="Loading">
-        <CurrentComponent />
+        <CurrentComponent core={core} />
       </Suspense>
     </>
   );

@@ -5,10 +5,7 @@ import { assertConfig } from './utils';
 
 export const createApp = (config: AppConfig) => {
   assertConfig(config);
-  const pages = config.pages.map((page) => ({
-    ...page,
-    getComponent: React.lazy(page.getComponent),
-  }));
+  const { pages } = config;
 
   if (pages.length === 0) {
     pages.push({
