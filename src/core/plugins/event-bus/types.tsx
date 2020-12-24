@@ -1,5 +1,3 @@
-export interface EventPayload extends Object {
-  [key: string]: any
-}
+export type EventPayload = unknown;
 
 export type CallbackFunction = (payload: EventPayload) => void;

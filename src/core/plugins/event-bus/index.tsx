@@ -6,6 +6,8 @@ const ejectEventDetails = (
   event: CustomEvent<EventPayload>,
 ) => cb(event.detail);
 
+const history: { [name: string]: EventPayload } = {};
+
 export const eventBus = ({
   on: (name: string, cb: CallbackFunction) => {
     const handler = ejectEventDetails(cb);
@@ -17,6 +19,8 @@ export const eventBus = ({
   },
   emit: (name: string, payload: EventPayload) => {
     const event = new CustomEvent(name, { detail: payload });
+    history[name] = payload;
     document.dispatchEvent(event);
   },
+  last: (name: string) => history[name],
 });

@@ -7,7 +7,7 @@ const ORDER_BOOK = '/api/v3/depth';
 const getOrderUrl = (
   symbol: string,
   limit: number = 20,
-) => `${BINANCE_HOST}${ORDER_BOOK}?symbol=${symbol}&limit=${limit}`;
+) => `${BINANCE_HOST}${ORDER_BOOK}?symbol=${symbol.toUpperCase()}&limit=${limit}`;
 
 const createSocket = (
   symbol: string,

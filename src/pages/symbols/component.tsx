@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Diff } from '../../core/plugins/binance-sdk/types';
 import { Props } from './types';
+import { DEFAULT_SYMBOL, SYMBOL_UPDATE, SYMBOLS } from '../../config';
 
 export const SymbolsPage = ({ core }: Props) => {
+  const [symbol, setSymbol] = useState<string>(
+    core.plugins.eventBus.last(SYMBOL_UPDATE) as string || DEFAULT_SYMBOL,
+  );
   const [diffs, setDiffs] = useState<Diff[]>([]);
 
   useEffect(() => {
@@ -16,20 +20,21 @@ export const SymbolsPage = ({ core }: Props) => {
     };
   }, [core]);
 
+  const updateSymbol = (newSymbol: string) => {
+    setSymbol(newSymbol);
+    core.plugins.eventBus.emit(SYMBOL_UPDATE, newSymbol);
+  };
+
   return (
     <div>
       <h1>Symbols Page</h1>
-      {
-        diffs.map((diff) => (
-          <div key={diff.U}>
-            { diff.e }
-            {' '}
-            -
-            {' '}
-            { diff.s }
-          </div>
-        ))
-      }
+      <select value={symbol} onChange={(e) => updateSymbol(e.target.value)}>
+        {
+          SYMBOLS.map((value) => (
+            <option value={value} key={value}>{value}</option>
+          ))
+        }
+      </select>
     </div>
   );
 };
