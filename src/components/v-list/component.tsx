@@ -28,7 +28,7 @@ export const VList = ({
   useEffect(() => {
     const t = Math.min(count, getVisibleRows(500, rowHeight, offset));
     setCountToShow(t);
-  }, [count]);
+  }, [count, rowHeight, offset]);
 
   const onScrollHandler = () => {
     const { current: divElement } = containerRef;

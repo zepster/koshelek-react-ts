@@ -7,6 +7,7 @@ export const SymbolsPage = ({ core }: Props) => {
   const [symbol, setSymbol] = useState<string>(
     core.plugins.eventBus.last(SYMBOL_UPDATE) as string || DEFAULT_SYMBOL,
   );
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [diffs, setDiffs] = useState<Diff[]>([]);
 
   useEffect(() => {

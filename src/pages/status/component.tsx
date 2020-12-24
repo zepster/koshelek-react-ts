@@ -50,7 +50,7 @@ export const StatusPage = ({ core }: Props) => {
           {
             ((index) => {
               if (!orderData.asks[index]) {
-                // eslint-disable-next-line no-debugger
+                // eslint-disable-next-line no-console
                 console.log('outside: ', index);
                 return null;
               }
