@@ -1,0 +1,14 @@
+.t-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.t-row {
+  display: flex;
+  height: 30px;
+  line-height: 30px;
+}
+.t-row:hover {
+  background-color: #ccc;
+  cursor: default;
+}
