@@ -1,4 +1,5 @@
 import { Diff } from './types';
+import { ORDER_LIMIT } from '../../../config';
 
 const BINANCE_HOST = 'https://api.binance.com';
 const STREAM_BINANCE_HOST = 'wss://stream.binance.com:9443/ws';
@@ -6,7 +7,7 @@ const ORDER_BOOK = '/api/v3/depth';
 
 const getOrderUrl = (
   symbol: string,
-  limit: number = 20,
+  limit: number = ORDER_LIMIT,
 ) => `${BINANCE_HOST}${ORDER_BOOK}?symbol=${symbol.toUpperCase()}&limit=${limit}`;
 
 const createSocket = (
