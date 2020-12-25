@@ -14,6 +14,7 @@ const RootApp = createApp({
       name: 'Symbols',
       getComponent: React.lazy(() => import(
         /* webpackChunkName: "symbols-page" */
+        /* webpackPrefetch: true */
         './pages/symbols'
       )),
     },
