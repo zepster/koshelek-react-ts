@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Diff } from '../../core/plugins/binance-sdk/types';
 import { Props } from './types';
 import {
-  DEFAULT_SYMBOL, SYMBOL_UPDATE, SYMBOLS, WS_DIFF_MESSAGE_COLLECT,
+  DEFAULT_SYMBOL,
+  SYMBOL_UPDATE,
+  SYMBOLS,
+  WS_DIFF_MESSAGE_COLLECT,
 } from '../../config';
 import { VList } from '../../components/v-list';
+import { OrderTable } from '../status/components/order-table';
 
 export const SymbolsPage = ({ core }: Props) => {
   const [symbol, setSymbol] = useState<string>(
@@ -40,13 +44,27 @@ export const SymbolsPage = ({ core }: Props) => {
           ))
         }
       </select>
-      <VList count={diffs.length} rowHeight={30} prerenderCount={0}>
-        {
-          ((index) => (
-            <div key={index} style={{ height: 30 }}>{index}</div>
-          ))
-        }
-      </VList>
+
+      <OrderTable>
+        <OrderTable.Header>
+          Таблица N1
+        </OrderTable.Header>
+        <OrderTable.Body>
+          <VList
+            count={diffs.length}
+            rowHeight={30}
+            prerenderCount={5}
+          >
+            {
+              ((index) => (
+                <OrderTable.Row key={index}>
+                  <div>{`${diffs[index].e} ${diffs[index].s}`}</div>
+                </OrderTable.Row>
+              ))
+            }
+          </VList>
+        </OrderTable.Body>
+      </OrderTable>
     </div>
   );
 };
