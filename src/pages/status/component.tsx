@@ -17,29 +17,22 @@ export const StatusPage = ({ core }: Props) => {
         <VList
           count={orderData.asks.length}
           rowHeight={30}
-          offset={0}
+          prerenderCount={5}
         >
           {
-            ((index) => {
-              if (!orderData.asks[index]) {
-                // eslint-disable-next-line no-console
-                console.log('outside: ', index);
-                return null;
-              }
-              return (
-                <div key={index} className={styles['t-row']}>
-                  <div>{orderData.asks[index].join(' - ')}</div>
-                  &nbsp;
-                  |
-                  &nbsp;
-                  <div>{orderData.bids[index].join(' - ')}</div>
-                  &nbsp;
-                  |
-                  &nbsp;
-                  {index}
-                </div>
-              );
-            })
+            ((index) => (
+              <div key={index} className={styles['t-row']}>
+                <div>{orderData.asks[index].join(' - ')}</div>
+                &nbsp;
+                |
+                &nbsp;
+                <div>{orderData.bids[index].join(' - ')}</div>
+                &nbsp;
+                |
+                &nbsp;
+                {index}
+              </div>
+            ))
           }
         </VList>
       </div>

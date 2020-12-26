@@ -40,7 +40,7 @@ export const SymbolsPage = ({ core }: Props) => {
           ))
         }
       </select>
-      <VList count={diffs.length} rowHeight={30} offset={0}>
+      <VList count={diffs.length} rowHeight={30} prerenderCount={0}>
         {
           ((index) => (
             <div key={index} style={{ height: 30 }}>{index}</div>

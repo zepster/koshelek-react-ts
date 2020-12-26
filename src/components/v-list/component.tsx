@@ -1,60 +1,50 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import styles from './index.module.css';
-
-type Props = {
-  count: number,
-  rowHeight: number,
-  offset: number,
-  children: (index: number) => React.ReactNode,
-};
-
-const getVisibleRows = (
-  containerHeight: number,
-  rowHeight: number,
-  offset: number,
-) => Math.ceil(containerHeight / rowHeight) + offset;
+import { useScrollListener } from './utils';
+import { Props } from './types';
 
 export const VList = ({
   count,
-  rowHeight, // 20
+  rowHeight,
   children,
-  offset,
+  prerenderCount,
 }: Props) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const pTopRef = useRef<number>(0);
-  const [countToShow, setCountToShow] = useState<number>(0);
-  const [offsetRow, setOffsetRow] = useState(0);
+  const height = 500;
+  const { scrollTop, ref } = useScrollListener();
+  // Полная высота скролла для всех элементов
+  const totalListHeight = count * rowHeight;
+  // Индекс первого элемента, с которого нужно начать рендер
+  const startIndex = Math.max(
+    // кол-во уже проскролленых элементов, без учета пререндера
+    Math.floor(scrollTop / rowHeight) - prerenderCount,
+    0,
+  );
+  // Кол-во элементов, которые нужно отрисовать
+  const countToShow = Math.min(
+    // сколько элементов может быть отрисовано в контейнере + пререндеры
+    // для начала и конца списка
+    Math.ceil(height / rowHeight) + 2 * prerenderCount,
+    count - startIndex,
+  );
 
-  useEffect(() => {
-    const t = Math.min(count, getVisibleRows(500, rowHeight, offset));
-    setCountToShow(t);
-  }, [count, rowHeight, offset]);
-
-  const onScrollHandler = () => {
-    const { current: divElement } = containerRef;
-    const scrollTop = divElement?.scrollTop || 0;
-
-    const newOffsetRow = Math.ceil(scrollTop / rowHeight) - offset;
-    pTopRef.current = newOffsetRow * rowHeight;
-    setOffsetRow(newOffsetRow);
-  };
+  // виртуальный отступ (проскролленые элементы в px)
+  const offsetTop = startIndex * rowHeight;
 
   return (
     <div
-      onScroll={onScrollHandler}
-      ref={containerRef}
+      ref={ref}
       className={styles['v-list']}
-      style={{ height: 500 }}
+      style={{ height }}
     >
-      <div style={{ height: count * rowHeight }}>
+      <div style={{ height: totalListHeight }}>
         <div
           style={{
             willChange: 'transform',
-            transform: `translateY(${pTopRef.current}px)`,
+            transform: `translateY(${offsetTop}px)`,
           }}
         >
           {Array.from(Array(countToShow)).map(
-            (i, index) => children(index + offsetRow),
+            (i, index) => children(index + startIndex),
           )}
         </div>
       </div>
