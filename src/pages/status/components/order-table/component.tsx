@@ -16,11 +16,11 @@ const getChild = (
   });
 
 const Header = ({ children }: Props) => (
-  <div className="header">{ children }</div>
+  <div className={styles.header}>{ children }</div>
 );
 
 const Body = ({ children }: Props) => (
-  <div className="body">{ children }</div>
+  <div className={styles.body}>{ children }</div>
 );
 
 const Row = ({ children }: Props) => (
@@ -33,12 +33,8 @@ const Table = ({ children }: Props) => {
 
   return (
     <div className={styles.table}>
-      <div className={styles.header}>
-        {header}
-      </div>
-      <div className={styles.body}>
-        {body}
-      </div>
+      {header}
+      {body}
     </div>
   );
 };
