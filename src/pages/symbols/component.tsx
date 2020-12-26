@@ -48,19 +48,22 @@ export const SymbolsPage = ({ core }: Props) => {
           Информацию о каждом diff-изменении
         </OrderTable.Header>
         <OrderTable.Body>
-          <VList
-            count={diffs.length}
-            rowHeight={30}
-            prerenderCount={5}
-          >
-            {
-              ((index) => (
-                <OrderTable.Row key={index}>
-                  <div>{`${diffs[index].e} ${diffs[index].s}`}</div>
-                </OrderTable.Row>
-              ))
-            }
-          </VList>
+          {() => (
+            <VList
+              count={diffs.length}
+              rowHeight={30}
+              prerenderCount={5}
+              height={500}
+            >
+              {
+                ((index) => (
+                  <OrderTable.Row key={index}>
+                    <div>{`${diffs[index].e} ${diffs[index].s}`}</div>
+                  </OrderTable.Row>
+                ))
+              }
+            </VList>
+          )}
         </OrderTable.Body>
       </OrderTable>
     </div>

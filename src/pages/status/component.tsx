@@ -19,22 +19,25 @@ export const StatusPage = ({ core }: Props) => {
           Таблица N1
         </OrderTable.Header>
         <OrderTable.Body>
-          <VList
-            count={orderData.asks.length}
-            rowHeight={30}
-            prerenderCount={5}
-          >
-            {
-              ((index) => (
-                <OrderTable.Row key={index}>
-                  <OrderDetails
-                    bids={orderData.bids[index]}
-                    asks={orderData.asks[index]}
-                  />
-                </OrderTable.Row>
-              ))
-            }
-          </VList>
+          { (height) => (
+            <VList
+              count={orderData.asks.length}
+              rowHeight={30}
+              prerenderCount={5}
+              height={height}
+            >
+              {
+                ((index) => (
+                  <OrderTable.Row key={index}>
+                    <OrderDetails
+                      bids={orderData.bids[index]}
+                      asks={orderData.asks[index]}
+                    />
+                  </OrderTable.Row>
+                ))
+              }
+            </VList>
+          ) }
         </OrderTable.Body>
       </OrderTable>
     </div>

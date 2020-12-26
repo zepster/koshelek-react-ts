@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
-import { Props, TableProps } from './types';
+import { BodyProps, Props, TableProps } from './types';
 import { getChild } from './utils';
 import { useHeight } from './hooks';
 
@@ -8,9 +8,15 @@ const Header = ({ children }: Props) => (
   <div className={styles.header}>{ children }</div>
 );
 
-const Body = ({ children }: Props) => (
-  <div className={styles.body}>{ children }</div>
-);
+const Body = ({ children }: BodyProps) => {
+  const { height: refHeight, ref } = useHeight('full');
+
+  return (
+    <div ref={ref} className={styles.body}>
+      { typeof children === 'function' ? children(refHeight) : children}
+    </div>
+  );
+};
 
 const Row = ({ children }: Props) => (
   <div className={styles.row}>{ children }</div>

@@ -3,8 +3,8 @@ import { TableProps } from './types';
 import { isNumber } from './utils';
 
 export const useHeight = (heightParam: TableProps['height']) => {
-  const [height, setHeight] = useState(
-    isNumber(heightParam) ? heightParam : 0,
+  const [height, setHeight] = useState<number>(
+    isNumber(heightParam) ? heightParam as number : 0,
   );
   const ref = useRef<HTMLDivElement>(null);
 

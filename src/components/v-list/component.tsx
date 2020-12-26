@@ -8,8 +8,8 @@ export const VList = ({
   rowHeight,
   children,
   prerenderCount,
+  height,
 }: Props) => {
-  const height = 500;
   const { scrollTop, ref } = useScrollListener();
   // Полная высота скролла для всех элементов
   const totalListHeight = count * rowHeight;
