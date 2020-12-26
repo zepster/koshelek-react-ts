@@ -1,4 +1,4 @@
-import { Diff } from './types';
+import { Diff, Orders } from './types';
 import { ORDER_LIMIT } from '../../../config';
 
 const BINANCE_HOST = 'https://api.binance.com';
@@ -14,14 +14,14 @@ const createSocket = (
   symbol: string,
 ) => new WebSocket(`${STREAM_BINANCE_HOST}/${symbol}@depth`);
 
-export const loadOrders = (symbol: string) => fetch(getOrderUrl(symbol))
+export const loadOrders = (symbol: string): Promise<Orders> => fetch(getOrderUrl(symbol))
   .then((response) => response.json());
 
 export const subscribeDiff = (
   symbol: string,
   onMessage: (event: Diff) => void,
 ) => {
-  const socket = createSocket(symbol);
+  const socket = createSocket(symbol.toLowerCase());
 
   socket.onmessage = (event) => onMessage(JSON.parse(event.data));
 

@@ -14,3 +14,9 @@ export interface Diff {
   // Asks to be updated
   a: [string, string][]
 }
+
+export type Orders = {
+  lastUpdateId: number,
+  bids: [string, string][]
+  asks: [string, string][]
+};

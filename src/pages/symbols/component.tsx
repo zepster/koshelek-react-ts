@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Diff } from '../../core/plugins/binance-sdk/types';
 import { Props } from './types';
-import { DEFAULT_SYMBOL, SYMBOL_UPDATE, SYMBOLS } from '../../config';
+import {
+  DEFAULT_SYMBOL, SYMBOL_UPDATE, SYMBOLS, WS_DIFF_MESSAGE_COLLECT,
+} from '../../config';
+import { VList } from '../../components/v-list';
 
 export const SymbolsPage = ({ core }: Props) => {
   const [symbol, setSymbol] = useState<string>(
     core.plugins.eventBus.last(SYMBOL_UPDATE) as string || DEFAULT_SYMBOL,
   );
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [diffs, setDiffs] = useState<Diff[]>([]);
+  const [diffs, setDiffs] = useState(
+    core.plugins.eventBus.last(WS_DIFF_MESSAGE_COLLECT) as Diff[] || [],
+  );
 
   useEffect(() => {
     const unsub = core.plugins.eventBus.on(
-      'diffEvent',
-      (data) => setDiffs((v) => v.concat(data as Diff)),
+      WS_DIFF_MESSAGE_COLLECT,
+      (data) => setDiffs(data as Diff[]),
     );
 
     return () => {
@@ -36,6 +40,13 @@ export const SymbolsPage = ({ core }: Props) => {
           ))
         }
       </select>
+      <VList count={diffs.length} rowHeight={30} offset={0}>
+        {
+          ((index) => (
+            <div key={index} style={{ height: 30 }}>{index}</div>
+          ))
+        }
+      </VList>
     </div>
   );
 };

@@ -1,6 +1,10 @@
-import React, { Suspense, useState } from 'react';
+import React, {
+  Suspense, useMemo, useState,
+} from 'react';
 import { Header } from './components';
-import { LazyComponent, AppConfig } from './types';
+import {
+  AppConfig, PageConfig,
+} from './types';
 import { Menu } from '../../components/menu';
 import { core } from '../core';
 
@@ -8,9 +12,11 @@ export const RootApp = ({
   pages,
 }: AppConfig) => {
   const [
-    CurrentComponent,
-    setCurrentComponent,
-  ] = useState<LazyComponent>(pages[0].getComponent);
+    currentPage,
+    setCurrentPage,
+  ] = useState<PageConfig>(pages[0]);
+
+  const Component = useMemo(() => currentPage.getComponent, [currentPage]);
 
   return (
     <>
@@ -19,7 +25,7 @@ export const RootApp = ({
           {pages.map((page) => (
             <Menu.Item
               key={page.name}
-              onClick={() => setCurrentComponent(page.getComponent)}
+              onClick={() => setCurrentPage(page)}
             >
               {page.name}
             </Menu.Item>
@@ -27,7 +33,7 @@ export const RootApp = ({
         </Menu>
       </Header>
       <Suspense fallback="Loading">
-        <CurrentComponent core={core} />
+        <Component core={core} />
       </Suspense>
     </>
   );

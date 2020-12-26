@@ -1,21 +1,13 @@
 import React from 'react';
 import { RootApp } from './component';
-import { AppConfig } from './types';
-import { assertConfig } from './utils';
+import { AppConfigOptions } from './types';
+import { core } from '../core';
 
-export const createApp = (config: AppConfig) => {
-  assertConfig(config);
-  const { pages } = config;
-
-  if (pages.length === 0) {
-    pages.push({
-      name: 'RootApp',
-      getComponent: React.lazy(
-        () => import('./components/empty-page')
-          .then((module) => ({ default: module.EmptyPage })),
-      ),
-    });
-  }
+export const createApp = (config: AppConfigOptions) => {
+  const pages = config.pages.map((page) => ({
+    ...page,
+    getComponent: page.getComponent(core),
+  }));
 
   return () => <RootApp pages={pages} />;
 };

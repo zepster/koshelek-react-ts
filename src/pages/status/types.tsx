@@ -1,16 +1,8 @@
-import { Core } from '../../core/core';
+import { Orders } from '../../core/plugins/binance-sdk/types';
+import { CoreProps } from '../../core/root-app/types';
 
-type OwnProps = {
-  core: Core,
-};
+export type Props = CoreProps;
 
-export type Props = OwnProps;
-
-export type Orders = {
-  lastUpdateId: number,
-  bids: [string, string][]
-  asks: [string, string][]
-};
 export type OrderUpdatePayload = {
   symbol: string,
   data: Orders,

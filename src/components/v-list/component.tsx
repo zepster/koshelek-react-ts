@@ -34,7 +34,7 @@ export const VList = ({
     const { current: divElement } = containerRef;
     const scrollTop = divElement?.scrollTop || 0;
 
-    const newOffsetRow = Math.ceil(scrollTop / rowHeight);
+    const newOffsetRow = Math.ceil(scrollTop / rowHeight) - offset;
     pTopRef.current = newOffsetRow * rowHeight;
     setOffsetRow(newOffsetRow);
   };
@@ -46,10 +46,17 @@ export const VList = ({
       className={styles['v-list']}
       style={{ height: 500 }}
     >
-      <div style={{ height: count * rowHeight, paddingTop: pTopRef.current }}>
-        {Array.from(Array(countToShow)).map(
-          (i, index) => children(index + offsetRow),
-        )}
+      <div style={{ height: count * rowHeight }}>
+        <div
+          style={{
+            willChange: 'transform',
+            transform: `translateY(${pTopRef.current}px)`,
+          }}
+        >
+          {Array.from(Array(countToShow)).map(
+            (i, index) => children(index + offsetRow),
+          )}
+        </div>
       </div>
     </div>
   );

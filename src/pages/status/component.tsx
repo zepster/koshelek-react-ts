@@ -1,46 +1,18 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Orders, OrderUpdatePayload, Props } from './types';
-import { DEFAULT_SYMBOL, ORDER_UPDATE, SYMBOL_UPDATE } from '../../config';
+import React from 'react';
+import { Props } from './types';
 import styles from './index.module.css';
 import { VList } from '../../components/v-list';
-
-const defaultState: Orders = {
-  lastUpdateId: 3213,
-  bids: [],
-  asks: [],
-};
+import { useEvents } from './hooks';
 
 export const StatusPage = ({ core }: Props) => {
-  const [orderData, setOrderData] = useState<Orders>(defaultState);
-  const symbol = useMemo<string>(() => {
-    const lastSymbol = core.plugins.eventBus.last(SYMBOL_UPDATE) as string;
-
-    return lastSymbol || DEFAULT_SYMBOL;
-  }, [core]);
-
-  const lastOrderData = useMemo<OrderUpdatePayload | undefined>(
-    () => core.plugins.eventBus.last(ORDER_UPDATE) as OrderUpdatePayload,
-    [core],
-  );
-
-  useEffect(() => {
-    if (lastOrderData?.symbol === symbol) {
-      setOrderData(lastOrderData.data);
-    } else {
-      core.plugins.binanceSdk.loadOrders(symbol)
-        .then((data: Orders) => {
-          core.plugins.eventBus.emit(ORDER_UPDATE, { symbol, data });
-          setOrderData(data);
-        });
-    }
-  }, [symbol, lastOrderData, core]);
+  const { isLoading, isSuccess, orderData } = useEvents(core);
 
   return (
     <div>
-      <h1>
-        Status Page:
-        {symbol}
-      </h1>
+      {
+        isLoading && 'Loading...'
+      }
+      { isSuccess && 'Success' }
       <div className={styles['t-body']}>
         <VList
           count={orderData.asks.length}
@@ -61,6 +33,10 @@ export const StatusPage = ({ core }: Props) => {
                   |
                   &nbsp;
                   <div>{orderData.bids[index].join(' - ')}</div>
+                  &nbsp;
+                  |
+                  &nbsp;
+                  {index}
                 </div>
               );
             })
