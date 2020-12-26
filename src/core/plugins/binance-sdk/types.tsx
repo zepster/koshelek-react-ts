@@ -15,8 +15,11 @@ export interface Diff {
   a: [string, string][]
 }
 
+export type Bids = [string, string];
+export type Asks = [string, string];
+
 export type Orders = {
   lastUpdateId: number,
-  bids: [string, string][]
-  asks: [string, string][]
+  bids: Bids[]
+  asks: Asks[]
 };

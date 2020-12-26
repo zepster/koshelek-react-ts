@@ -1,0 +1,31 @@
+.table {
+  padding: 5px;
+  border: 1px solid #cccccc;
+}
+
+.header,
+.body {
+  padding: 5px;
+}
+
+.header {
+  background-color: aliceblue;
+  position: sticky;
+}
+
+.body {
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  height: 30px;
+  line-height: 30px;
+}
+
+.row:hover {
+  background-color: #ccc;
+  cursor: default;
+}
