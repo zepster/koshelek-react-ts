@@ -36,7 +36,6 @@ export const SymbolsPage = ({ core }: Props) => {
 
   return (
     <div>
-      <h1>Symbols Page</h1>
       <select value={symbol} onChange={(e) => updateSymbol(e.target.value)}>
         {
           SYMBOLS.map((value) => (
@@ -44,10 +43,9 @@ export const SymbolsPage = ({ core }: Props) => {
           ))
         }
       </select>
-
       <OrderTable>
         <OrderTable.Header>
-          Таблица N1
+          Информацию о каждом diff-изменении
         </OrderTable.Header>
         <OrderTable.Body>
           <VList

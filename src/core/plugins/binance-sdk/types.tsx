@@ -15,6 +15,7 @@ export interface Diff {
   a: [string, string][]
 }
 
+// [PRICE, QTY]
 export type Bids = [string, string];
 export type Asks = [string, string];
 

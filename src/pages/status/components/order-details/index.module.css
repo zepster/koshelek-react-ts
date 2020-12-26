@@ -2,3 +2,17 @@
   display: flex;
   width: 100%;
 }
+
+.qty,
+.price {
+  width: 80px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+.total {
+  flex: 1;
+  font-weight: bold;
+}
