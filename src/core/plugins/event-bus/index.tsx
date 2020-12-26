@@ -18,13 +18,9 @@ export const eventBus = ({
     };
   },
   emit: (name: string, payload: EventPayload) => {
-    console.log(name);
     const event = new CustomEvent(name, { detail: payload });
     history[name] = payload;
     document.dispatchEvent(event);
   },
   last: (name: string) => history[name],
 });
-
-// @ts-ignore
-window.e = eventBus;
