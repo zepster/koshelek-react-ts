@@ -14,7 +14,7 @@ export const StatusPage = ({ core }: Props) => {
         isLoading && 'Loading...'
       }
       { isSuccess && 'Success' }
-      <OrderTable>
+      <OrderTable height="full">
         <OrderTable.Header>
           Таблица N1
         </OrderTable.Header>

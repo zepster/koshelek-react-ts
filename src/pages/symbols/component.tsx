@@ -43,7 +43,7 @@ export const SymbolsPage = ({ core }: Props) => {
           ))
         }
       </select>
-      <OrderTable>
+      <OrderTable height={500}>
         <OrderTable.Header>
           Информацию о каждом diff-изменении
         </OrderTable.Header>

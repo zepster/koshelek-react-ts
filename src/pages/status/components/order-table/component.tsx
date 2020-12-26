@@ -1,19 +1,8 @@
 import React from 'react';
 import styles from './index.module.css';
-
-type Props = {
-  children: React.ReactNode,
-};
-
-const getChild = (
-  children: React.ReactNode, targetChild: unknown,
-) => React.Children.toArray(children)
-  .find((child) => {
-    if (typeof child === 'object' && 'type' in child) {
-      return child.type === targetChild;
-    }
-    return false;
-  });
+import { Props, TableProps } from './types';
+import { getChild } from './utils';
+import { useHeight } from './hooks';
 
 const Header = ({ children }: Props) => (
   <div className={styles.header}>{ children }</div>
@@ -27,12 +16,17 @@ const Row = ({ children }: Props) => (
   <div className={styles.row}>{ children }</div>
 );
 
-const Table = ({ children }: Props) => {
+const Table = ({ children, height }: TableProps) => {
   const header = getChild(children, Header);
   const body = getChild(children, Body);
+  const { height: refHeight, ref } = useHeight(height);
 
   return (
-    <div className={styles.table}>
+    <div
+      ref={ref}
+      style={{ height: refHeight }}
+      className={styles.table}
+    >
       {header}
       {body}
     </div>

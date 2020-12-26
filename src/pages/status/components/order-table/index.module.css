@@ -11,11 +11,14 @@
 .header {
   background-color: aliceblue;
   position: sticky;
+  height: 40px;
+  line-height: 40px;
 }
 
 .body {
   background-color: beige;
   display: flex;
+  height: calc(100% - 40px);
   flex-direction: column;
 }
 
