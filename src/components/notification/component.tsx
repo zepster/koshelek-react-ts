@@ -1,10 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
-
-type Props = {
-  text: string,
-  type?: 'danger'
-};
+import { Props } from './types';
 
 export const Notification = ({ text, type = 'danger' }: Props) => (
   <div
