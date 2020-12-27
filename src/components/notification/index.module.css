@@ -1,0 +1,12 @@
+.notification {
+  width: 100%;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  background-color: #cce5ff;
+  color: #004085
+}
+
+.notification--danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}

@@ -13,4 +13,7 @@ export const WS_DIFF_MESSAGE = 'WS_DIFF_MESSAGE';
 export const WS_DIFF_MESSAGE_COLLECT = 'WS_DIFF_MESSAGE_COLLECT';
 
 // BINANCE CONFIG
-export const ORDER_LIMIT = 100;
+export const ORDER_LIMIT = 50;
+
+// Тексты
+export const ORDER_LOAD_ERROR_TEXT = 'Ошибка загрузки стакана';
