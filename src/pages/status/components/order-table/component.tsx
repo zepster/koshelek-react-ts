@@ -13,7 +13,7 @@ const Body = ({ children }: BodyProps) => {
 
   return (
     <div ref={ref} className={styles.body}>
-      { typeof children === 'function' ? children(refHeight) : children}
+      { children(refHeight)}
     </div>
   );
 };

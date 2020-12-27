@@ -4,9 +4,10 @@ import { VList } from '../../components/v-list';
 import { useEvents } from './hooks';
 import { OrderTable } from './components/order-table';
 import { OrderDetails, OrderLegend } from './components/order-details';
+import { Loader } from '../../components/loader';
 
 export const StatusPage = ({ core }: Props) => {
-  const { orderData } = useEvents(core);
+  const { orderData, isLoading } = useEvents(core);
 
   return (
     <OrderTable height="full">
@@ -14,7 +15,7 @@ export const StatusPage = ({ core }: Props) => {
         <OrderLegend />
       </OrderTable.Header>
       <OrderTable.Body>
-        { (height) => (
+        { (height) => (isLoading ? <Loader /> : (
           <VList
             count={orderData.asks.length}
             rowHeight={30}
@@ -32,7 +33,7 @@ export const StatusPage = ({ core }: Props) => {
               ))
             }
           </VList>
-        ) }
+        )) }
       </OrderTable.Body>
     </OrderTable>
   );
