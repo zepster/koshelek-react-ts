@@ -7,7 +7,7 @@ import { OrderDetails, OrderLegend } from './components/order-details';
 import { Loader } from '../../components/loader';
 
 export const StatusPage = ({ core }: Props) => {
-  const { orderData, isLoading } = useEvents(core);
+  const { orderData, isLoading, orderDataLen } = useEvents(core);
 
   return (
     <OrderTable height="full">
@@ -17,7 +17,7 @@ export const StatusPage = ({ core }: Props) => {
       <OrderTable.Body>
         { (height) => (isLoading ? <Loader /> : (
           <VList
-            count={orderData.asks.length}
+            count={orderDataLen}
             rowHeight={30}
             prerenderCount={5}
             height={height}

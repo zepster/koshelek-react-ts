@@ -31,5 +31,6 @@ export const useEvents = (core: Props['core']) => {
     isSuccess: status === 'success',
     isFailed: status === 'failed',
     orderData,
+    orderDataLen: orderData?.asks?.length || 0,
   };
 };
