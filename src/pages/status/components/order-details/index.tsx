@@ -1,1 +1,1 @@
-export { OrderDetails } from './component';
+export { OrderDetails, OrderLegend } from './component';

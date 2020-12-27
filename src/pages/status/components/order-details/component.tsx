@@ -23,3 +23,15 @@ export const OrderDetails = ({ bids, asks, ...rest }: Props) => {
     </div>
   );
 };
+
+export const OrderLegend = (props: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={`${styles.details} ${styles.legend}`} {...props}>
+    <div className={styles.qty}>Amount</div>
+    <div className={styles.price}>Price</div>
+    <div className={styles.total}>Total</div>
+
+    <div className={styles.qty}>Amount</div>
+    <div className={styles.price}>Price</div>
+    <div className={styles.total}>Total</div>
+  </div>
+);

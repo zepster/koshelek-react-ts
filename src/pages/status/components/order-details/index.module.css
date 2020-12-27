@@ -1,18 +1,36 @@
 .details {
   display: flex;
   width: 100%;
+  font-size: 14px;
+}
+
+.legend {
+  color: #645d5d;
+  text-transform: uppercase;
+}
+
+.qty,
+.price,
+.total {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .qty,
 .price {
   width: 80px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
   margin-right: 10px;
 }
 
 .total {
   flex: 1;
   font-weight: bold;
+  margin-right: 15px;
+}
+
+@media (min-width: 768px) {
+  .details {
+    font-size: 16px;
+  }
 }

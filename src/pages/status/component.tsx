@@ -3,7 +3,7 @@ import { Props } from './types';
 import { VList } from '../../components/v-list';
 import { useEvents } from './hooks';
 import { OrderTable } from './components/order-table';
-import { OrderDetails } from './components/order-details';
+import { OrderDetails, OrderLegend } from './components/order-details';
 
 export const StatusPage = ({ core }: Props) => {
   const { orderData } = useEvents(core);
@@ -11,7 +11,7 @@ export const StatusPage = ({ core }: Props) => {
   return (
     <OrderTable height="full">
       <OrderTable.Header>
-        Таблица N1
+        <OrderLegend />
       </OrderTable.Header>
       <OrderTable.Body>
         { (height) => (
