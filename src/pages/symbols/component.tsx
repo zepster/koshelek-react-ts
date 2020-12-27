@@ -56,7 +56,14 @@ export const SymbolsPage = ({ core }: Props) => {
             {
               ((index) => (
                 <OrderTable.Row key={index}>
-                  <div>{`${diffs[index].e} ${diffs[index].s}`}</div>
+                  <div>
+                    {'Event type: '}
+                    <b>{diffs[index].e}</b>
+                    . Bids:
+                    <b>{diffs[index].b.length}</b>
+                    , Asks:
+                    <b>{diffs[index].b.length}</b>
+                  </div>
                 </OrderTable.Row>
               ))
               }
