@@ -3,9 +3,8 @@
   border: 1px solid #cccccc;
 }
 
-.header,
-.body {
-  padding: 5px;
+.header {
+  padding: 10px;
 }
 
 .header {
@@ -18,7 +17,6 @@
 }
 
 .body {
-  background-color: beige;
   display: flex;
   height: calc(100% - 40px);
   flex-direction: column;
@@ -28,9 +26,15 @@
   display: flex;
   height: 30px;
   line-height: 30px;
+  transition: box-shadow .2s ease-in;
+  padding: 0 10px;
+}
+
+.row:nth-child(2n) {
+  background-color: #fafafa;
 }
 
 .row:hover {
-  background-color: #ccc;
+  box-shadow: inset 0 0 6px 0px #adadad;
   cursor: default;
 }
