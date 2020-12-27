@@ -27,6 +27,7 @@ export const RootApp = ({
             <Menu.Item
               key={page.name}
               onClick={() => setCurrentPage(page)}
+              active={page.name === currentPage.name}
             >
               {page.name}
             </Menu.Item>

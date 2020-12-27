@@ -5,6 +5,17 @@
 .item {
     margin-right: 10px;
     padding: 20px;
-    border-bottom: 1px solid red;
     cursor: pointer;
+    position: relative;
+}
+
+.item--active::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #F0B90B;
+  bottom: 0;
 }
