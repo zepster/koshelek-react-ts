@@ -54,11 +54,11 @@ export const SymbolsPage = ({ core }: Props) => {
             height={500}
           >
             {
-                ((index) => (
-                  <OrderTable.Row key={index}>
-                    <div>{`${diffs[index].e} ${diffs[index].s}`}</div>
-                  </OrderTable.Row>
-                ))
+              ((index) => (
+                <OrderTable.Row key={index}>
+                  <div>{`${diffs[index].e} ${diffs[index].s}`}</div>
+                </OrderTable.Row>
+              ))
               }
           </VList>
         )}
