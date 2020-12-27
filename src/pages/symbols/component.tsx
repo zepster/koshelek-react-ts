@@ -7,6 +7,7 @@ import {
 import { VList } from '../../components/v-list';
 import { OrderTable } from '../status/components/order-table';
 import { SelectControl } from '../../components/select-control';
+import styles from './index.module.css';
 
 export const SymbolsPage = ({ core }: Props) => {
   const [symbol, setSymbol] = useState<string>(
@@ -56,7 +57,7 @@ export const SymbolsPage = ({ core }: Props) => {
             {
               ((index) => (
                 <OrderTable.Row key={index}>
-                  <div>
+                  <div className={styles.diff}>
                     {'Event type: '}
                     <b>{diffs[index].e}</b>
                     . Bids:
