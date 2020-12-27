@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
-import { useScrollListener } from './utils';
+import { useScrollListener } from './hooks';
 import { Props } from './types';
 
 export const VList = ({
