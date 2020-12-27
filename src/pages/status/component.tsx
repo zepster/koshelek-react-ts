@@ -6,40 +6,34 @@ import { OrderTable } from './components/order-table';
 import { OrderDetails } from './components/order-details';
 
 export const StatusPage = ({ core }: Props) => {
-  const { isLoading, isSuccess, orderData } = useEvents(core);
+  const { orderData } = useEvents(core);
 
   return (
-    <div>
-      {
-        isLoading && 'Loading...'
-      }
-      { isSuccess && 'Success' }
-      <OrderTable height="full">
-        <OrderTable.Header>
-          Таблица N1
-        </OrderTable.Header>
-        <OrderTable.Body>
-          { (height) => (
-            <VList
-              count={orderData.asks.length}
-              rowHeight={30}
-              prerenderCount={5}
-              height={height}
-            >
-              {
-                ((index) => (
-                  <OrderTable.Row key={index}>
-                    <OrderDetails
-                      bids={orderData.bids[index]}
-                      asks={orderData.asks[index]}
-                    />
-                  </OrderTable.Row>
-                ))
-              }
-            </VList>
-          ) }
-        </OrderTable.Body>
-      </OrderTable>
-    </div>
+    <OrderTable height="full">
+      <OrderTable.Header>
+        Таблица N1
+      </OrderTable.Header>
+      <OrderTable.Body>
+        { (height) => (
+          <VList
+            count={orderData.asks.length}
+            rowHeight={30}
+            prerenderCount={5}
+            height={height}
+          >
+            {
+              ((index) => (
+                <OrderTable.Row key={index}>
+                  <OrderDetails
+                    bids={orderData.bids[index]}
+                    asks={orderData.asks[index]}
+                  />
+                </OrderTable.Row>
+              ))
+            }
+          </VList>
+        ) }
+      </OrderTable.Body>
+    </OrderTable>
   );
 };
