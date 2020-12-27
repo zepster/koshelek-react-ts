@@ -7,6 +7,7 @@ import {
 } from './types';
 import { Menu } from '../../components/menu';
 import { core } from '../core';
+import styles from './index.module.css';
 
 export const RootApp = ({
   pages,
@@ -32,9 +33,11 @@ export const RootApp = ({
           ))}
         </Menu>
       </Header>
-      <Suspense fallback="Loading">
-        <Component core={core} />
-      </Suspense>
+      <div className={styles['root-container']}>
+        <Suspense fallback="Loading">
+          <Component core={core} />
+        </Suspense>
+      </div>
     </>
   );
 };
