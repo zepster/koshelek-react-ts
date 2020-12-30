@@ -12,7 +12,7 @@
 
 Вторым плагином ядра будет плагин, реализующий SDK для взимодействия с биржей binance (только 2 метода: получить биржевой стакан по определенному символу по REST и подписаться на обновления стакана по WS). (См. раздел Diff. Depth Stream в документации: https://github.com/binance-exchange/binance-official-api-docs/blob/master/web-socket-streams.md).
 
-####Установка
+#### Установка
  ```
  npm install
  ```
