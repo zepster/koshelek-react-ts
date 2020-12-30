@@ -1,15 +1,10 @@
 import React from 'react';
-import { Asks, Bids } from '../../../../core/plugins/binance-sdk/types';
 import styles from './index.module.css';
-
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  bids: Bids,
-  asks: Asks,
-}
+import { Props } from './types';
 
 export const OrderDetails = ({ bids, asks, ...rest }: Props) => {
   const [priceB, qtyB] = bids.map((v) => +v);
-  const [priceA, qtyA] = bids.map((v) => +v);
+  const [priceA, qtyA] = asks.map((v) => +v);
 
   return (
     <div className={styles.details} {...rest}>
