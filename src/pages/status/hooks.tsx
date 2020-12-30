@@ -3,7 +3,7 @@ import { OrderUpdatePayload, Props } from './types';
 import { ORDER_LOAD_STATUS_CHANGE, ORDER_UPDATE } from '../../config';
 import { Orders } from '../../core/plugins/binance-sdk/types';
 
-const defaultState: Orders = {
+export const defaultState: Orders = {
   lastUpdateId: 3213,
   bids: [],
   asks: [],
