@@ -3,14 +3,14 @@ import { useHeight } from './hooks';
 
 describe('order-table:hooks', () => {
   describe('useHeight', () => {
-    it('Должен вернуть инитиал значение, если это число', () => {
+    it('should return initial value if number was provided', () => {
       const initial = 500;
       const { result } = renderHook(() => useHeight(initial));
 
       expect(result.current.height).toBe(initial);
     });
 
-    it('Должен вернуть 0 если инитиал не число', () => {
+    it('should return 0 if height will calculate later', () => {
       const initial = 0;
       const { result } = renderHook(() => useHeight('full'));
 

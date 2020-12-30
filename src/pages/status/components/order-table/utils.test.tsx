@@ -3,11 +3,11 @@ import { isNumber, getChild } from './utils';
 
 describe('order-table:utils', () => {
   describe('isNumber', () => {
-    it('Должен определить параметр как чилсо', () => {
+    it('short detect number', () => {
       expect(isNumber(2)).toBeTruthy();
     });
 
-    it('Не должен определить параметр как чилсо', () => {
+    it('should not detect number', () => {
       const types = ['', false, {}, []];
       const result = types.every((type) => !isNumber(type));
       expect(result).toBeTruthy();
