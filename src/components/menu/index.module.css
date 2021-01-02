@@ -1,21 +1,21 @@
 .menu {
   display: flex;
+  position: relative;
+  padding-bottom: 2px;
 }
 
 .item {
   margin-right: 10px;
   padding: 20px;
   cursor: pointer;
-  position: relative;
 }
 
-.item--active::after {
-  content: '';
+.active-bar {
   position: absolute;
-  width: 100%;
-  left: 0;
-  right: 0;
   height: 2px;
   background-color: #F0B90B;
+  width: 100%;
   bottom: 0;
+  transform: translateX(0);
+  transition: all .4s ease;
 }
