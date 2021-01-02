@@ -19,6 +19,21 @@ const RootApp = createApp({
         './pages/symbols'
       )),
     },
+    {
+      name: 'Status2',
+      getComponent: (core: Core) => React.lazy(() => import(
+        /* webpackChunkName: "status-page" */
+        './pages/status/with-model'
+      ).then((module) => module.default(core))),
+    },
+    {
+      name: 'Symbols2',
+      getComponent: () => React.lazy(() => import(
+        /* webpackChunkName: "symbols-page" */
+        /* webpackPrefetch: true */
+        './pages/symbols'
+      )),
+    },
   ],
 });
 

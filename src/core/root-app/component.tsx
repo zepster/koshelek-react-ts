@@ -1,5 +1,5 @@
 import React, {
-  Suspense, useMemo, useState,
+  Suspense, useState,
 } from 'react';
 import { Header } from './components';
 import {
@@ -9,6 +9,10 @@ import { Menu } from '../../components/menu';
 import { core } from '../core';
 import styles from './index.module.css';
 
+const getIndex = (arr: PageConfig[], pageName: string) => arr.findIndex(
+  (page) => page.name === pageName,
+);
+
 export const RootApp = ({
   pages,
 }: AppConfig) => {
@@ -17,7 +21,13 @@ export const RootApp = ({
     setCurrentPage,
   ] = useState<PageConfig>(pages[0]);
 
-  const Component = useMemo(() => currentPage.getComponent, [currentPage]);
+  const getStyle = () => {
+    const currentIndex = getIndex(pages, currentPage.name);
+
+    return {
+      transform: `translateX(${100 * (currentIndex) * -1}%)`,
+    };
+  };
 
   return (
     <>
@@ -34,10 +44,27 @@ export const RootApp = ({
           ))}
         </Menu>
       </Header>
-      <div className={styles['root-container']}>
-        <Suspense fallback="Loading">
-          <Component core={core} />
-        </Suspense>
+      <div
+        className={styles['root-container']}
+      >
+        {
+          pages.map(
+            ({
+              name,
+              getComponent: Component,
+            }) => (
+              <div
+                key={name}
+                style={getStyle()}
+                className={styles.animate}
+              >
+                <Suspense fallback="Loading">
+                  <Component core={core} />
+                </Suspense>
+              </div>
+            ),
+          )
+        }
       </div>
     </>
   );
