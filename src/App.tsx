@@ -19,6 +19,22 @@ const RootApp = createApp({
         './pages/symbols'
       )),
     },
+    {
+      name: 'фыафаы',
+      getComponent: () => React.lazy(() => import(
+        /* webpackChunkName: "symbols-page" */
+        /* webpackPrefetch: true */
+        './pages/symbols'
+      )),
+    },
+    {
+      name: 'пыфпфыпцфпфц фцпфыпфцп',
+      getComponent: () => React.lazy(() => import(
+        /* webpackChunkName: "symbols-page" */
+        /* webpackPrefetch: true */
+        './pages/symbols'
+      )),
+    },
   ],
 });
 

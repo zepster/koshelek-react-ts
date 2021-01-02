@@ -22,12 +22,12 @@ export const RootApp = ({
   return (
     <>
       <Header>
-        <Menu>
+        <Menu active={currentPage.name}>
           {pages.map((page) => (
             <Menu.Item
               key={page.name}
               onClick={() => setCurrentPage(page)}
-              active={page.name === currentPage.name}
+              name={page.name}
             >
               {page.name}
             </Menu.Item>
