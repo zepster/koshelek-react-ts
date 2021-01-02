@@ -1,10 +1,6 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import styles from './index.module.css';
-
-interface ItemProps extends HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode,
-  active?: boolean,
-}
+import { ItemProps } from './types';
 
 const Item = ({ children, active = false, ...rest }: ItemProps) => {
   const className = `${styles.item} ${active ? styles['item--active'] : ''}`;
