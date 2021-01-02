@@ -1,12 +1,12 @@
 .menu {
-    display: flex;
+  display: flex;
 }
 
 .item {
-    margin-right: 10px;
-    padding: 20px;
-    cursor: pointer;
-    position: relative;
+  margin-right: 10px;
+  padding: 20px;
+  cursor: pointer;
+  position: relative;
 }
 
 .item--active::after {
